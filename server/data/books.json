@@ -1,0 +1,32 @@
+{
+    "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc": {
+        "_id": "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc",
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "genre": "Fantasy",
+        "date": "1937-09-21",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4a/TheHobbit_FirstEdition.jpg",
+        "summary": "Bilbo Baggins, a hobbit, is swept into an epic quest to reclaim the lost Dwarf Kingdom of Erebor from the fearsome dragon Smaug.",
+        "_createdOn": 1698240000000
+    },
+    "2b3c4d5e-6f7g-8h9i-0j1k-234567890def": {
+        "_id": "2b3c4d5e-6f7g-8h9i-0j1k-234567890def",
+        "title": "1984",
+        "author": "George Orwell",
+        "genre": "Dystopian",
+        "date": "1949-06-08",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c3/1984first.jpg",
+        "summary": "A dystopian tale of a totalitarian society under constant surveillance, where independent thought is a crime.",
+        "_createdOn": 1698243600000
+    },
+    "3c4d5e6f-7g8h-9i0j-1k2l-345678901ghi": {
+        "_id": "3c4d5e6f-7g8h-9i0j-1k2l-345678901ghi",
+        "title": "Harry Potter and the Philosopher's Stone",
+        "author": "J.K. Rowling",
+        "genre": "Fantasy",
+        "date": "1997-06-26",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg",
+        "summary": "Harry discovers he is a wizard on his 11th birthday and attends Hogwarts School of Witchcraft and Wizardry, where he uncovers secrets of his past.",
+        "_createdOn": 1698247200000
+    }
+}
