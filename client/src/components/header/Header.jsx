@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
-     <header className="bg-gray-100 shadow-md">
+      <header className="bg-gray-100 border-b-3 shadow-md">
         <nav className="flex items-center ml-15 px-1 py-4 space-x-10">
           <NavLink to="/" className="flex items-center space-x-3 transform hover:scale-105 transition-transform duration-300">
             <img
