@@ -1329,7 +1329,6 @@
         }
     };
     var seedData = {
-        
         books: {
             "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc": {
                 "_id": "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc",
@@ -1338,7 +1337,7 @@
                 "author": "J.R.R. Tolkien",
                 "genre": "Fantasy",
                 "date": "1937-09-21",
-                "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4a/TheHobbit_FirstEdition.jpg",
+                "imageUrl": "https://m.media-amazon.com/images/I/81uEDUfKBZL.jpg",
                 "summary": "Bilbo Baggins, a hobbit, is swept into an epic quest to reclaim the lost Dwarf Kingdom of Erebor from the fearsome dragon Smaug.",
                 "_createdOn": 1698240000000
             },
@@ -1349,7 +1348,7 @@
                     "author": "George Orwell",
                     "genre": "Dystopian",
                     "date": "1949-06-08",
-                    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c3/1984first.jpg",
+                    "imageUrl": "https://m.media-amazon.com/images/I/7180qjGSgDL._SL1360_.jpg",
                     "summary": "A dystopian tale of a totalitarian society under constant surveillance, where independent thought is a crime.",
                     "_createdOn": 1698243600000
             },
