@@ -4,17 +4,22 @@ import Home from "./components/home/Home"
 import Footer from "./components/footer/Footer";
 
 function App() {
-  return (  
-    <>
-      <Header />
+  return (
+      <div
+        className="flex flex-col min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/background-image.jpg')" }}
+      >
+        <Header />
 
-      <Routes>
-          <Route path="/" element={<Home />} />
-      </Routes>
+        <main className="flex-1 flex items-center justify-center">
+          <div className="my-25">
+            <Home />
+          </div>
+        </main>
 
-      <Footer />
-    </>
-  )
+        <Footer />
+      </div>
+    );
 }
 
 export default App
