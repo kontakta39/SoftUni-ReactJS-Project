@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div
-      className="min-h-screen py-16"
+      className="min-h-screen flex items-center justify-center "
       style={{
         backgroundImage: "url('/images/background-image.jpg')",
         backgroundSize: "cover",
@@ -25,8 +25,8 @@ export default function Home() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 bg-white/80 rounded-xl shadow-lg py-12">
-        <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center">
+      <div className="max-w-6xl mx-auto px-20 py-16 bg-white/80 rounded-xl shadow-lg">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center underline">
           Latest Books
         </h1>
 
