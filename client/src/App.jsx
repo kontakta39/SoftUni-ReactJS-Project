@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header"
 import Home from "./components/home/Home"
+import AddBook from "./components/addBook/AddBook";
 import Footer from "./components/footer/Footer";
 
 function App() {
@@ -11,10 +12,11 @@ function App() {
       >
         <Header />
 
-        <main className="flex-1 flex items-center justify-center">
-          <div className="my-25">
-            <Home />
-          </div>
+        <main className="flex-1 py-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/addbook" element={<AddBook />} />
+          </Routes>
         </main>
 
         <Footer />
