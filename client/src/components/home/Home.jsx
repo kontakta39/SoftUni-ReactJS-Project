@@ -4,7 +4,7 @@ export default function Home() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3030/data/books")
+    fetch("http://localhost:3030/jsonstore/books")
       .then(res => res.json())
       .then(data => {
         const booksArray = Object.values(data)
