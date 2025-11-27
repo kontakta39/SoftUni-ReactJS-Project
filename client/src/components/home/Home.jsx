@@ -16,7 +16,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-20 py-16 bg-white/80 rounded-xl shadow-lg">
+    <div className="max-w-6xl mx-auto px-20 pt-10 pb-14 bg-white/80 rounded-xl shadow-lg">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center underline">
         Latest Books
       </h1>

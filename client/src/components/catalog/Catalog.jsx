@@ -34,7 +34,7 @@ export default function Catalog() {
   };
 
   return (
-    <section className="max-w-6xl mx-auto px-20 py-10 bg-white/80 rounded-xl shadow-lg">
+    <section className="max-w-6xl mx-auto px-20 pt-10 pb-14 bg-white/80 rounded-xl shadow-lg">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center underline">
         Book Catalog
       </h1>
@@ -51,7 +51,7 @@ export default function Catalog() {
             {books.length > 3 && (
               <button
                 onClick={() => scroll("left")}
-                className="absolute -left-1 z-10 bg-gray-700 text-white hover:bg-blue-600 p-2 rounded-full shadow"
+                className="absolute -left-1 z-10 bg-gray-700 text-white hover:bg-blue-600 p-2 rounded-full shadow text-2xl"
               >
                 &#8592;
               </button>
@@ -85,7 +85,7 @@ export default function Catalog() {
             {books.length > 3 && (
               <button
                 onClick={() => scroll("right")}
-                className="absolute -right-1 z-10 bg-gray-700 text-white hover:bg-blue-600 p-2 rounded-full shadow"
+                className="absolute -right-1 z-10 bg-gray-700 text-white hover:bg-blue-600 p-2 rounded-full shadow text-2xl"
               >
                 &#8594;
               </button>
