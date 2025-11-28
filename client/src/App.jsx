@@ -4,6 +4,7 @@ import Home from "./components/home/Home"
 import Catalog from "./components/catalog/Catalog";
 import AddBook from "./components/addBook/AddBook";
 import Footer from "./components/footer/Footer";
+import DetailsBook from "./components/detailsBook/DetailsBook";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/addbook" element={<AddBook />} />
+            <Route path="/book/details/:bookId" element={<DetailsBook />} />
           </Routes>
         </main>
 
