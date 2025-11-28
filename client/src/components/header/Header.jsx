@@ -1,6 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Header() {
+  const location = useLocation();
+  
   return (
       <header className="bg-gray-100 border-b-3 shadow-md">
         <nav className="flex items-center ml-15 px-1 py-4 space-x-10">
@@ -25,15 +27,17 @@ export default function Header() {
             >
               Home
             </NavLink>
-            <NavLink to="/catalog"
-              className={({ isActive }) =>
-                `px-3 py-2 rounded-md font-medium transition ${
-                  isActive ? "bg-blue-500 text-white" : "bg-sky-200 text-sky-700 hover:bg-sky-200 hover:text-sky-900"
-                }`
-              }
-            >
-              Catalog
-            </NavLink>
+                      <NavLink
+            to="/catalog"
+            className={({ isActive }) => {
+              const active = isActive || location.pathname.startsWith("/book/details");
+              return `px-3 py-2 rounded-md font-medium transition ${
+                active ? "bg-blue-500 text-white" : "bg-sky-200 text-sky-700 hover:bg-sky-200 hover:text-sky-900"
+              }`;
+            }}
+          >
+            Catalog
+          </NavLink>
             <NavLink to="/addbook"
               className={({ isActive }) =>
                 `px-3 py-2 rounded-md font-medium transition ${

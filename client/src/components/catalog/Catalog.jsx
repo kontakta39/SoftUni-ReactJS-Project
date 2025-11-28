@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Catalog() {
   const [books, setBooks] = useState([]);
   const scrollRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
       (async () => {
@@ -35,14 +37,14 @@ export default function Catalog() {
 
   return (
     <section className="max-w-6xl mx-auto px-20 pt-10 pb-14 bg-white/80 rounded-xl shadow-lg">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center underline">
+      <h1 className="text-4xl font-extrabold text-gray-900 mb-12 text-center underline decoration-blue-600 underline-offset-5">
         Book Catalog
       </h1>
 
       <div className="relative flex justify-center items-center min-h-[200px]">
 
         {books.length === 0 ? (
-          <p className="text-gray-700 text-xl font-medium text-center">
+          <p className="text-black text-3xl font-medium text-center">
             No books available yet. Add the first book!
           </p>
         ) : (
@@ -73,7 +75,9 @@ export default function Catalog() {
                     <h2 className="text-white text-2xl font-bold">{book.title}</h2>
                     <p className="text-white text-lg">{book.author || "Unknown Author"}</p>
                     <p className="text-white mb-3">{book.genre}</p>
-                    <button className="mt-4 px-6 py-2 bg-sky-200 text-sky-700 text-lg font-semibold rounded-lg hover:bg-blue-500 hover:text-white transition">
+                    <button 
+                      onClick={() => navigate(`/book/details/${book._id}`)}
+                      className="mt-4 px-6 py-2 bg-sky-200 text-sky-700 text-lg font-semibold rounded-lg hover:bg-blue-500 hover:text-white transition">
                       Details
                     </button>
                   </div>
