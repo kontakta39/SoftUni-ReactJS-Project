@@ -3,8 +3,9 @@ import Header from "./components/header/Header"
 import Home from "./components/home/Home"
 import Catalog from "./components/catalog/Catalog";
 import AddBook from "./components/addBook/AddBook";
-import Footer from "./components/footer/Footer";
+import EditBook from "./components/editBook/EditBook";
 import DetailsBook from "./components/detailsBook/DetailsBook";
+import Footer from "./components/footer/Footer";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/addbook" element={<AddBook />} />
             <Route path="/book/details/:bookId" element={<DetailsBook />} />
+            <Route path="/book/edit/:bookId" element={<EditBook />} />
           </Routes>
         </main>
 

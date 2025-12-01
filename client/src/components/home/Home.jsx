@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate();
 
-useEffect(() => {
+  useEffect(() => {
     const fetchBooks = async () => {
         try {
             const res = await fetch("http://localhost:3030/jsonstore/books");
