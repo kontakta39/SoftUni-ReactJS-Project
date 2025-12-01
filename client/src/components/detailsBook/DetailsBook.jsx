@@ -26,15 +26,36 @@ export default function DetailsBook() {
                 const data = await res.json();
                 setBook(data);
             } catch (err) {
-                console.error("Error fetching book:", err.message);
+                alert(err.message);
             }
         };
         fetchBook();
     }, [bookId]);
 
-    const onDeleteClick = () => {
-        console.log("Delete clicked for book ID:", book._id);
-        //No backend call yet
+    const onDeleteClick = async () => {
+        if (!book._id) return;
+
+        const confirmDelete = confirm(
+            `Are you sure you want to delete the book "${book.title}"?`
+        );
+
+        if (!confirmDelete) return;
+
+        try {
+            const res = await fetch(`http://localhost:3030/jsonstore/books/${book._id}`, {
+                method: "DELETE",
+            });
+
+            if (!res.ok) {
+                throw new Error(`Failed to delete book: ${res.statusText}`);
+            }
+
+            console.log(`Book with ID ${book._id} deleted successfully.`);
+            navigate("/catalog");
+        } catch (err) {
+            console.error("Error deleting book:", err.message);
+            alert(err.message);
+        }
     };
 
     {/* Formatting date */}
@@ -67,7 +88,7 @@ export default function DetailsBook() {
         >
             {/* Title */}
             <h1 className="text-4xl font-bold underline decoration-blue-600 underline-offset-5 mb-12">
-            Book Title: {book.title}
+                Book Title: {book.title}
             </h1>
 
             {/* Image + Book Info */}
@@ -91,8 +112,8 @@ export default function DetailsBook() {
                 shadow-[inset_2px_2px_4px_#2a3a48,inset_-2px_-2px_4px_#425c75]
                 "
             >
-                <h2 className="text-3xl text-white text-center font-semibold">
-                Book Information
+                <h2 className="text-3xl mb-10 text-white text-center font-semibold">
+                    Book Information
                 </h2>
 
                 <div className={rowBorderClass}>
