@@ -47,6 +47,33 @@ export default function Header() {
             >
               Add Book
             </NavLink>
+            <NavLink to="/register"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md font-medium transition ${
+                  isActive ? "bg-blue-500 text-white" : "bg-sky-200 text-sky-700 hover:bg-sky-200 hover:text-sky-900"
+                }`
+              }
+            >
+              Register
+            </NavLink>
+            <NavLink to="/login"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md font-medium transition ${
+                  isActive ? "bg-blue-500 text-white" : "bg-sky-200 text-sky-700 hover:bg-sky-200 hover:text-sky-900"
+                }`
+              }
+            >
+              Login
+            </NavLink>
+            <NavLink to="/logout"
+              className={({ isActive }) =>
+                `px-3 py-2 rounded-md font-medium transition ${
+                  isActive ? "bg-blue-500 text-white" : "bg-sky-200 text-sky-700 hover:bg-sky-200 hover:text-sky-900"
+                }`
+              }
+            >
+              Logout
+            </NavLink>
           </div>
         </nav>
       </header>
