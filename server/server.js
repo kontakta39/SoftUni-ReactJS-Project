@@ -1320,10 +1320,11 @@
     var identity = "email";
     var protectedData = {
         users: {
-            "35c62d76-8152-4626-8712-eeb96381bea8": {
-                email: "kontakta39@mail.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
-            },
+    		"60f0cf0b-34b0-4abd-9769-8c42f830dffc": {
+    			email: "admin@abv.bg",
+    			username: "Admin",
+    			hashedPassword: "fac7060c3e17e6f151f247eacb2cd5ae80b8c36aedb8764e18a41bbdc16aa302"
+    		}
         },
         sessions: {
         }
@@ -1332,7 +1333,7 @@
         books: {
             "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc": {
                 "_id": "1a2b3c4d-5e6f-7g8h-9i0j-123456789abc",
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
                 "title": "The Hobbit",
                 "author": "J.R.R. Tolkien",
                 "genre": "Fantasy",
@@ -1343,7 +1344,7 @@
             },
             "2b3c4d5e-6f7g-8h9i-0j1k-234567890def": {
                     "_id": "2b3c4d5e-6f7g-8h9i-0j1k-234567890def",
-                    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
                     "title": "1984",
                     "author": "George Orwell",
                     "genre": "Dystopian",
@@ -1354,7 +1355,7 @@
             },
                 "3c4d5e6f-7g8h-9i0j-1k2l-345678901ghi": {
                     "_id": "3c4d5e6f-7g8h-9i0j-1k2l-345678901ghi",
-                    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                    "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
                     "title": "Harry Potter and the Philosopher's Stone",
                     "author": "J.K. Rowling",
                     "genre": "Fantasy",
