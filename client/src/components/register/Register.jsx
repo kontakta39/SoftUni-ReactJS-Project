@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Register() {
     const navigate = useNavigate();
+    const { register } = useAuth();
 
     const [form, setForm] = useState({
         username: "",
@@ -14,7 +16,6 @@ export default function Register() {
     const [errors, setErrors] = useState({});
 
     const fieldsToValidate = ["username", "email", "password", "confirmPassword"];
-
     const fieldLabels = {
         username: "Username",
         email: "Email",
@@ -22,27 +23,19 @@ export default function Register() {
         confirmPassword: "Confirm Password",
     };
 
-    {/* Real-time validation */}
     const update = (field) => (e) => {
         const value = e.target.value;
-
-        setForm((prev) => {
+        setForm(prev => {
             const updatedForm = { ...prev, [field]: value };
+            const newErrors = { ...errors };
 
-            let newErrors = { ...errors };
-
-            if (!value.trim()) {
-                newErrors[field] = `${fieldLabels[field]} is required.`;
-            } else {
-                newErrors[field] = undefined;
-            }
+            if (!value.trim()) newErrors[field] = `${fieldLabels[field]} is required.`;
+            else newErrors[field] = undefined;
 
             if (updatedForm.confirmPassword.trim() !== "") {
-                if (updatedForm.password !== updatedForm.confirmPassword) {
+                if (updatedForm.password !== updatedForm.confirmPassword)
                     newErrors.confirmPassword = "Passwords do not match.";
-                } else {
-                    newErrors.confirmPassword = undefined;
-                }
+                else newErrors.confirmPassword = undefined;
             }
 
             setErrors(newErrors);
@@ -50,45 +43,24 @@ export default function Register() {
         });
     };
 
-    {/* Form submit validation */}
     const validateForm = () => {
         const newErrors = {};
-
-        fieldsToValidate.forEach((f) => {
-            if (!form[f].trim()) {
-                newErrors[f] = `${fieldLabels[f]} is required.`;
-            }
+        fieldsToValidate.forEach(f => {
+            if (!form[f].trim()) newErrors[f] = `${fieldLabels[f]} is required.`;
         });
-
-        if (form.confirmPassword.trim() !== "" && form.password !== form.confirmPassword) {
+        if (form.confirmPassword.trim() !== "" && form.password !== form.confirmPassword)
             newErrors.confirmPassword = "Passwords do not match.";
-        }
 
         setErrors(newErrors);
-
         return Object.keys(newErrors).length === 0;
     };
 
     const registerHandler = async (e) => {
         e.preventDefault();
-
         if (!validateForm()) return;
 
         try {
-            const res = await fetch("http://localhost:3030/users/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    username: form.username,
-                    email: form.email,
-                    password: form.password,
-                }),
-            });
-
-            if (!res.ok) {
-                throw new Error(`Server error: ${res.statusText}`);
-            }
-
+            await register(form.username, form.email, form.password);
             navigate("/");
         } catch (err) {
             alert(err.message);
@@ -120,13 +92,7 @@ export default function Register() {
                 {["username", "email", "password", "confirmPassword"].map((field) => (
                     <div key={field} className="relative">
                         <input
-                            type={
-                                field.includes("password")
-                                    ? "password"
-                                    : field === "email"
-                                    ? "email"
-                                    : "text"
-                            }
+                            type={field.includes("password") ? "password" : field === "email" ? "email" : "text"}
                             name={field}
                             id={field}
                             value={form[field]}
