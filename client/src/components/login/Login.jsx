@@ -1,8 +1,11 @@
+// Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth(); 
 
     const [form, setForm] = useState({
         email: "",
@@ -16,13 +19,12 @@ export default function Login() {
         password: "Password",
     };
 
+    {/* Real-time validation */}
     const update = (field) => (e) => {
         const value = e.target.value;
-
         setForm((prev) => {
             const updated = { ...prev, [field]: value };
-
-            let newErrors = { ...errors };
+            const newErrors = { ...errors };
 
             if (!value.trim()) {
                 newErrors[field] = `${fieldLabels[field]} is required.`;
@@ -35,9 +37,9 @@ export default function Login() {
         });
     };
 
+    {/* Validate form on submit */}
     const validateForm = () => {
         const newErrors = {};
-
         if (!form.email.trim()) newErrors.email = "Email is required.";
         if (!form.password.trim()) newErrors.password = "Password is required.";
 
@@ -45,36 +47,16 @@ export default function Login() {
         return Object.keys(newErrors).length === 0;
     };
 
+    {/* Submit handler */}
     const loginHandler = async (e) => {
         e.preventDefault();
-
         if (!validateForm()) return;
 
         try {
-            const res = await fetch("http://localhost:3030/users/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    email: form.email,
-                    password: form.password,
-                }),
-            });
-
-            if (!res.ok) {
-                const error = await res.json();
-
-                setErrors((prev) => ({
-                    ...prev,
-                    password: error.message || "Invalid email or password.",
-                }));
-
-                return;
-            }
-
-            navigate("/");
-
+            await login(form.email, form.password); 
+            navigate("/"); 
         } catch (err) {
-            alert("Network error: " + err.message);
+            alert(err.message); 
         }
     };
 
@@ -114,7 +96,6 @@ export default function Login() {
                         <label htmlFor={field} className={labelFieldClass(field)}>
                             {fieldLabels[field]}
                         </label>
-
                         {errors[field] && <p className={errorClass}>{errors[field]}</p>}
                     </div>
                 ))}
