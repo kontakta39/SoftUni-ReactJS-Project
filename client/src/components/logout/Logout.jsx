@@ -1,14 +1,17 @@
-export async function logout(token) {
-    const res = await fetch("http://localhost:3030/users/logout", {
-        method: "GET",
-        headers: {
-            "X-Authorization": token,
-        },
-    });
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-    if (res.status !== 204) {
-        throw new Error("Logout failed");
+export default function Logout() {
+    var auth = useAuth();
+    var navigate = useNavigate();
+
+    try {
+        auth.logout();
+    } catch (err) {
+        alert("Problem with logout: " + err.message);
+    } finally {
+        navigate("/");
     }
 
-    return true;
+    return null; 
 }

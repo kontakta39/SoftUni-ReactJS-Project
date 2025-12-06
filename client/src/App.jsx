@@ -4,6 +4,7 @@ import Home from "./components/home/Home"
 import Catalog from "./components/catalog/Catalog";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import Logout from "./components/logout/Logout";
 import AddBook from "./components/addBook/AddBook";
 import EditBook from "./components/editBook/EditBook";
 import DetailsBook from "./components/detailsBook/DetailsBook";
