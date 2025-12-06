@@ -1363,10 +1363,10 @@
                     "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg",
                     "summary": "Harry discovers he is a wizard on his 11th birthday and attends Hogwarts School of Witchcraft and Wizardry, where he uncovers secrets of his past.",
                     "_createdOn": 1698247200000
-            },
-        comments: {
-        
             }
+        },
+        comments: {
+
         }
     };
     var rules$1 = {
