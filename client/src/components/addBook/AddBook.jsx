@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useRequest from "../../hooks/useRequest";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function AddBook() {
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+  const { request } = useRequest();
+
   const [form, setForm] = useState({
     title: "",
     author: "",
@@ -17,22 +22,25 @@ export default function AddBook() {
 
   const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-  {/* Function to update form fields */}
+  {/* Redirect to login if user is not authenticated */}
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated]);
+
+  {/* Update form fields */}
   const update = (field) => (e) => {
     const value = e.target.value;
     setForm((prev) => ({ ...prev, [field]: value }));
 
-    {/* Real-time validation only for text fields and summary */}
+    {/* Real-time validation for text fields and summary */}
     if (fieldsToValidate.includes(field) && field !== "date") {
       let message = "";
       if (field === "summary") {
-        if (!value.trim()) {
-          message = "Summary is required.";
-        } else if (value.length < 10 || value.length > 1000) {
-          message = "Summary must be between 10 and 1000 characters.";
-        } else {
-          message = undefined;
-        }
+        if (!value.trim()) message = "Summary is required.";
+        else if (value.length < 10 || value.length > 1000) message = "Summary must be between 10 and 1000 characters.";
+        else message = undefined;
       } else {
         message = value.trim() ? undefined : `${capitalize(field)} is required.`;
       }
@@ -40,69 +48,51 @@ export default function AddBook() {
     }
   };
 
-  {/* onBlur handler for date field */}
+  {/* onBlur validation for date */}
   const handleDateBlur = () => {
-    if (!form.date) {
-      setErrors((prev) => ({ ...prev, date: "Publication Date is required." }));
-    } else {
-      setErrors((prev) => ({ ...prev, date: undefined }));
-    }
+    if (!form.date) setErrors((prev) => ({ ...prev, date: "Publication Date is required." }));
+    else setErrors((prev) => ({ ...prev, date: undefined }));
   };
 
   {/* Validate entire form on submit */}
   const validateForm = () => {
     const newErrors = {};
     fieldsToValidate.forEach((f) => {
-      if (!form[f]?.trim()) {
-        if (f === "date") newErrors[f] = "Publication Date is required.";
-        else newErrors[f] = `${capitalize(f)} is required.`;
-      }
-      if (f === "summary" && form[f]?.trim()) {
-        if (form[f].length < 10 || form[f].length > 1000) {
-          newErrors[f] = "Summary must be between 10 and 1000 characters.";
-        }
+      if (!form[f]?.trim()) newErrors[f] = f === "date" ? "Publication Date is required." : `${capitalize(f)} is required.`;
+      if (f === "summary" && form[f]?.trim() && (form[f].length < 10 || form[f].length > 1000)) {
+        newErrors[f] = "Summary must be between 10 and 1000 characters.";
       }
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  {/* Handler for adding book */}
+  {/* Submit handler to add book */}
   const addBookHandler = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
 
     const data = {
       ...form,
+      _ownerId: user._id,
       imageUrl: form.imageUrl || "/images/book-no-image-available.jpg",
       _createdOn: Date.now(),
     };
 
     try {
-      const response = await fetch("http://localhost:3030/jsonstore/books", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Failed to create the book: ${res.statusText}`);
-      }
-
-      const result = await response.json();
-      navigate("/");
+      await request("/data/books", "POST", data, { accessToken: user.accessToken });
+      navigate("/catalog");
     } catch (err) {
       alert(err.message);
     }
   };
 
-  {/* Function to apply input field classes */}
+  {/* Helper functions for input and label styling */}
   const inputFieldClass = (field) =>
     `peer w-full rounded-lg border px-4 py-3 placeholder-transparent bg-white text-black ${
       errors[field] ? "border-red-600" : "border-black"
     } hover:border-blue-600 focus:border-blue-600 focus:outline-none`;
 
-  {/* Function to apply label classes */}
   const labelFieldClass = (field) =>
     `absolute left-4 bg-white px-1 transition-all duration-200 top-3 text-black ${
       form[field] ? "top-[-10px] text-black" : ""
