@@ -1,73 +1,50 @@
-// Login.jsx
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import useForm from "../../hooks/useForm";
 
 export default function Login() {
     const navigate = useNavigate();
-    const { login } = useAuth(); 
+    const { login } = useAuth();
 
-    const [form, setForm] = useState({
+    const initialValues = {
         email: "",
         password: "",
-    });
-
-    const [errors, setErrors] = useState({});
+    };
 
     const fieldLabels = {
         email: "Email",
         password: "Password",
     };
 
-    {/* Real-time validation */}
-    const update = (field) => (e) => {
-        const value = e.target.value;
-        setForm((prev) => {
-            const updated = { ...prev, [field]: value };
-            const newErrors = { ...errors };
-
-            if (!value.trim()) {
-                newErrors[field] = `${fieldLabels[field]} is required.`;
-            } else {
-                newErrors[field] = undefined;
-            }
-
-            setErrors(newErrors);
-            return updated;
-        });
+    const validateField = (field, values) => {
+        const value = values[field].trim();
+        if (!value) return `${fieldLabels[field]} is required.`;
+        return "";
     };
 
-    {/* Validate form on submit */}
-    const validateForm = () => {
-        const newErrors = {};
-        if (!form.email.trim()) newErrors.email = "Email is required.";
-        if (!form.password.trim()) newErrors.password = "Password is required.";
-
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    };
-
-    {/* Submit handler */}
-    const loginHandler = async (e) => {
-        e.preventDefault();
-        if (!validateForm()) return;
-
+    const onSubmit = async (formValues) => {
         try {
-            await login(form.email, form.password); 
-            navigate("/"); 
+            await login(formValues.email, formValues.password);
+            navigate("/");
         } catch (err) {
-            alert(err.message); 
+            alert(err.message);
         }
     };
 
+    const { values, errors, touched, register, handleSubmit } = useForm(
+        initialValues,
+        validateField,
+        onSubmit
+    );
+
     const inputFieldClass = (field) =>
         `peer w-full rounded-lg border px-4 py-3 placeholder-transparent bg-white text-black ${
-            errors[field] ? "border-red-600" : "border-black"
+            touched[field] && errors[field] ? "border-red-600" : "border-black"
         } hover:border-blue-600 focus:border-blue-600 focus:outline-none`;
 
     const labelFieldClass = (field) =>
         `absolute left-4 bg-white px-1 transition-all duration-200 top-3 text-black ${
-            form[field] ? "top-[-10px] text-black" : ""
+            values[field] ? "top-[-10px] text-black" : ""
         } peer-hover:text-blue-600 peer-focus:top-[-10px] peer-focus:text-blue-600 peer-focus:text-sm`;
 
     const errorClass = "text-red-500 text-sm mt-1";
@@ -75,28 +52,28 @@ export default function Login() {
     return (
         <section className="w-full flex justify-center py-16">
             <form
-                onSubmit={loginHandler}
+                onSubmit={handleSubmit}
                 className="w-full max-w-3xl bg-white shadow-xl rounded-3xl p-10 space-y-10 transform transition-transform duration-300 hover:scale-103 hover:shadow-2xl"
             >
                 <h1 className="text-4xl font-bold text-black text-center mb-10 underline decoration-blue-600 decoration-2 underline-offset-5 drop-shadow-md">
                     Login
                 </h1>
 
-                {["email", "password"].map((field) => (
+                {Object.keys(initialValues).map((field) => (
                     <div key={field} className="relative">
                         <input
-                            type={field === "password" ? "password" : "email"}
-                            name={field}
                             id={field}
-                            value={form[field]}
-                            onChange={update(field)}
+                            type={field === "password" ? "password" : "email"}
                             placeholder=" "
                             className={inputFieldClass(field)}
+                            {...register(field)}
                         />
                         <label htmlFor={field} className={labelFieldClass(field)}>
                             {fieldLabels[field]}
                         </label>
-                        {errors[field] && <p className={errorClass}>{errors[field]}</p>}
+                        {touched[field] && errors[field] && (
+                            <p className={errorClass}>{errors[field]}</p>
+                        )}
                     </div>
                 ))}
 
