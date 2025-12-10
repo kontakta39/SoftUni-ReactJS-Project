@@ -9,6 +9,7 @@ import AddBook from "./components/addBook/AddBook";
 import EditBook from "./components/editBook/EditBook";
 import DetailsBook from "./components/detailsBook/DetailsBook";
 import Footer from "./components/footer/Footer";
+import BorrowedBooks from "./components/borrowedBooks/BorrowedBooks";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/book/details/:bookId" element={<DetailsBook />} />
             <Route path="/book/edit/:bookId" element={<EditBook />} />
+            <Route path="/borrowedbooks" element={<BorrowedBooks />} />
           </Routes>
         </main>
 
