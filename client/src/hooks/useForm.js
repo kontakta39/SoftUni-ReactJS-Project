@@ -28,13 +28,16 @@ export default function useForm(initialValues, validateField, onSubmit) {
         e.preventDefault();
 
         const newErrors = {};
+        const newTouched = {};
 
         Object.keys(values).forEach(field => {
             const error = validateField(field, values);
             if (error) newErrors[field] = error;
+            newTouched[field] = true;
         });
 
         setErrors(newErrors);
+        setTouched(newTouched);
 
         if (Object.keys(newErrors).length === 0) {
             onSubmit(values, resetForm);
@@ -60,5 +63,6 @@ export default function useForm(initialValues, validateField, onSubmit) {
         register,
         handleSubmit,
         resetForm,
+        setValues,
     };
 }
