@@ -1,16 +1,77 @@
-# React + Vite
+# Online Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Online Library is a web application that allows users to register, log in, and manage a personal library of books. Only authenticated users can add, edit, or delete their own books, borrow books from other users, return borrowed books, and leave comments on books they do not own. The system enforces permissions, ensuring that book owners cannot edit or delete books that are currently borrowed.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### User Authentication
+- Register a new account
+- Log in with an existing account
+- Only authenticated users can borrow books or leave comments
+- A default admin account is available on the server:
+  - **Username:** Admin   
+  - **Email:** admin@abv.bg  
+  - **Password:** admin
 
-## React Compiler
+### Book Management
+- Add new books to your personal library
+- Edit and delete your own books (if not currently borrowed)
+- Borrow books from other users
+- Track borrowed books on a separate page
+- Owners cannot edit or delete books that are currently borrowed
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Comments
+- Add comments on other users' books
+- Users cannot comment on their own books
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:  
+```bash
+git clone https://github.com/kontakta39/SoftUni-ReactJS-Project.git
+cd SoftUni-ReactJS-Project
+```
+
+2. Install dependencies:  
+```bash
+npm install
+```
+
+3. Start the client:  
+```bash
+npm run dev
+```
+The client will typically run at [http://localhost:5173](http://localhost:5173/).
+
+4. Start the server:  
+
+This application uses the **SoftUni Practice Server** as a backend. Start it in a separate terminal:  
+```bash
+node server.js
+```
+The server runs on [http://localhost:3030](http://localhost:3030), which is used for all API requests.
+
+## Usage
+
+- Open the application in your browser (usually at [http://localhost:5173](http://localhost:5173/)).
+- Register a new user or log in with an existing account.
+- Add, edit, or delete your books from the library.
+- Borrow books from other users and view them on your "Borrowed Books" page.
+- Leave comments on books you do not own.
+- Return borrowed books to allow the owner to edit or delete them.
+
+## Technology Stack
+
+- **Frontend:** React, Tailwind CSS, React Router  
+- **Backend:** SoftUni Practice Server (Node.js-based, port 3030)  
+- **Other:** JavaScript, HTML, CSS  
+
+## Notes
+
+- Only authenticated users can perform actions such as borrowing books or adding comments.  
+- Owners cannot modify or delete books that are currently borrowed.  
+- Comments can only be added on books that belong to other users.  
+
+## License
+
+This project is for educational purposes and practice.
