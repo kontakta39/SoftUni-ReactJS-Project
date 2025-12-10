@@ -100,13 +100,22 @@ export default function Login() {
                     </div>
                 ))}
 
-                <div className="flex justify-center">
+                <div className="flex flex-col items-center">
                     <button
                         type="submit"
                         className="px-12 py-4 text-lg bg-blue-600 text-white font-medium rounded-xl shadow hover:bg-blue-700 hover:scale-105 transition-all duration-300"
                     >
                         Login
                     </button>
+                    <p className="mt-8 text-gray-600">
+                        Don't have an account?{" "}
+                        <span
+                            onClick={() => navigate("/register")}
+                            className="text-blue-600 font-semibold cursor-pointer hover:underline"
+                        >
+                            Click here
+                        </span>
+                    </p>
                 </div>
             </form>
         </section>

@@ -92,16 +92,19 @@ export default function Register() {
                 {["username", "email", "password", "confirmPassword"].map((field) => (
                     <div key={field} className="relative">
                         <input
-                            type={field.includes("password") ? "password" : field === "email" ? "email" : "text"}
-                            name={field}
-                            id={field}
-                            value={form[field]}
-                            onChange={update(field)}
-                            placeholder=" "
-                            className={inputFieldClass(field)}
+                        type={
+                            field === "password" || field === "confirmPassword" ? "password"
+                            : field === "email" ? "email" : "text"
+                        }
+                        name={field}
+                        id={field}
+                        value={form[field]}
+                        onChange={update(field)}
+                        placeholder=" "
+                        className={inputFieldClass(field)}
                         />
                         <label htmlFor={field} className={labelFieldClass(field)}>
-                            {fieldLabels[field]}
+                        {fieldLabels[field]}
                         </label>
                         {errors[field] && <p className={errorClass}>{errors[field]}</p>}
                     </div>
