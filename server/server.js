@@ -1367,7 +1367,10 @@
         },
         comments: {
 
-        }
+        },
+        borrowedBooks: {
+
+        },
     };
     var rules$1 = {
         users: {
