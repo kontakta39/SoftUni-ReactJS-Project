@@ -1,4 +1,4 @@
-# Online Library
+# React Online Library Application
 
 Online Library is a web application that allows users to register, log in, and manage a personal library of books. Only authenticated users can add, edit, or delete their own books, borrow books from other users, return borrowed books, and leave comments on books they do not own. The system enforces permissions, ensuring that book owners cannot edit or delete books that are currently borrowed.
 
