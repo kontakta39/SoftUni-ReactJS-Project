@@ -6,7 +6,7 @@ Online Library is a web application that allows users to register, log in, and m
 
 ---
 
-## Features
+## 🚀 Features
 
 ### User Authentication
 - Register a new account
@@ -30,7 +30,7 @@ Online Library is a web application that allows users to register, log in, and m
 
 ---
 
-## Installation
+## ⚙️ Installation
 
 1. Clone the repository:  
 ```bash
@@ -59,7 +59,7 @@ The server runs on [http://localhost:3030](http://localhost:3030), which is used
 
 ---
 
-## Usage
+## 🧭 Usage
 
 - Open the application in your browser (usually at [http://localhost:5173](http://localhost:5173/)).
 - Register a new user or log in with an existing account.
@@ -78,7 +78,7 @@ The server runs on [http://localhost:3030](http://localhost:3030), which is used
 
 ---
 
-## Notes
+## 📝 Notes
 
 - Only authenticated users can perform actions such as borrowing books or adding comments.  
 - Owners cannot modify or delete books that are currently borrowed.  
