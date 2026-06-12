@@ -8,7 +8,7 @@ Online Library is a web application that allows users to register, log in, and m
 
 ## 🚀 Features
 
-### User Authentication
+### 👤 User Authentication
 - Register a new account
 - Log in with an existing account
 - Only authenticated users can borrow books or leave comments
@@ -17,14 +17,14 @@ Online Library is a web application that allows users to register, log in, and m
   - **Email:** admin@abv.bg  
   - **Password:** admin
 
-### Book Management
+### 📚 Book Management
 - Add new books to your personal library
 - Edit and delete your own books (if not currently borrowed)
 - Borrow books from other users
 - Track borrowed books on a separate page
 - Owners cannot edit or delete books that are currently borrowed
 
-### Comments
+### 💬 Comments
 - Add comments on other users' books
 - Users cannot comment on their own books
 
