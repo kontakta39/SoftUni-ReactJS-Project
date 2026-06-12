@@ -1,6 +1,10 @@
-# React Online Library Application
+# 🎓 React Online Library Application
+
+## 📌 Overview
 
 Online Library is a web application that allows users to register, log in, and manage a personal library of books. Only authenticated users can add, edit, or delete their own books, borrow books from other users, return borrowed books, and leave comments on books they do not own. The system enforces permissions, ensuring that book owners cannot edit or delete books that are currently borrowed.
+
+---
 
 ## Features
 
@@ -23,6 +27,8 @@ Online Library is a web application that allows users to register, log in, and m
 ### Comments
 - Add comments on other users' books
 - Users cannot comment on their own books
+
+---
 
 ## Installation
 
@@ -51,6 +57,8 @@ node server.js
 ```
 The server runs on [http://localhost:3030](http://localhost:3030), which is used for all API requests.
 
+---
+
 ## Usage
 
 - Open the application in your browser (usually at [http://localhost:5173](http://localhost:5173/)).
@@ -60,11 +68,15 @@ The server runs on [http://localhost:3030](http://localhost:3030), which is used
 - Leave comments on books you do not own.
 - Return borrowed books to allow the owner to edit or delete them.
 
-## Technology Stack
+---
+
+## 🛠️ Technology Stack
 
 - **Frontend:** React, Tailwind CSS, React Router  
 - **Backend:** SoftUni Practice Server (Node.js-based, port 3030)  
 - **Other:** JavaScript, HTML, CSS  
+
+---
 
 ## Notes
 
@@ -72,6 +84,8 @@ The server runs on [http://localhost:3030](http://localhost:3030), which is used
 - Owners cannot modify or delete books that are currently borrowed.  
 - Comments can only be added on books that belong to other users.  
 
-## License
+---
 
-This project is for educational purposes and practice.
+## 📜 License
+
+This repository is licensed under the MIT License. See the [*LICENSE*](LICENSE) file for details.
